@@ -69,7 +69,7 @@ jobs:
         $DUPLO_VERSION = Get-Content ./uploads/tag.txt
         mkdir build
         Set-Location build
-        cmake /std:c++17 .. -DDUPLO_VERSION="$DUPLO_VERSION" -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+        cmake .. -DDUPLO_VERSION="$DUPLO_VERSION" -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         Set-Location ..
         Compress-Archive -Path .\build\duplo\* -Destination duplo-windows.zip
     - name: upload windows artifact
