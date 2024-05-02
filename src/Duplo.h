@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-const std::string VERSION = DUPLO_VERSION;
+const std::string VERSION = "v1.0.1";
 
 namespace Duplo {
     void Run(const Options& options);
