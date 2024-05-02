@@ -73,7 +73,7 @@ jobs:
         cmake .. -DDUPLO_VERSION=\"$DUPLO_VERSION\" -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         cmake --build .  --config ${{ matrix.build_type }}
         Set-Location ..
-        tree -f -i .
+        Get-ChildItem -Recurse | Format-List FullName
         Compress-Archive -Path .\build\duplo\* -Destination duplo-windows.zip
     - name: upload windows artifact
       uses: actions/upload-artifact@v1
