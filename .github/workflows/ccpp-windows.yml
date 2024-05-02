@@ -63,21 +63,13 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 18
-
-    - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: >
-        cmake -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
     - name: build
       run: |
         npm install -g bats
         $DUPLO_VERSION = Get-Content ./uploads/tag.txt
         mkdir build
         Set-Location build
-        cmake .. -DDUPLO_VERSION="$DUPLO_VERSION"
+        cmake .. -DDUPLO_VERSION="$DUPLO_VERSION" -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         cmake --build .
         Set-Location ..
         Compress-Archive -Path .\build\duplo\* -Destination duplo-windows.zip
