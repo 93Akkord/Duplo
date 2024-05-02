@@ -74,7 +74,7 @@ jobs:
         cmake --build .  --config ${{ matrix.build_type }}
         Set-Location ..
         Get-ChildItem -Recurse | Format-List FullName
-        Compress-Archive -Path .\build\duplo\* -Destination duplo-windows.zip
+        Compress-Archive -Path .\build\Release\* -Destination duplo-windows.zip
     - name: upload windows artifact
       uses: actions/upload-artifact@v1
       with:
