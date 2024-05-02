@@ -70,6 +70,7 @@ jobs:
         mkdir build
         Set-Location build
         cmake .. -DDUPLO_VERSION="$DUPLO_VERSION" -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+        cmake --build .
         Set-Location ..
         Compress-Archive -Path .\build\duplo\* -Destination duplo-windows.zip
     - name: upload windows artifact
